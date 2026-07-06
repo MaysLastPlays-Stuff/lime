@@ -6,17 +6,11 @@ jobs:
     uses: ./.github/workflows/android.yml
   ios:
     uses: ./.github/workflows/ios.yml
-  linux:
-    uses: ./.github/workflows/linux.yml
-  mac:
-    uses: ./.github/workflows/mac.yml
-  windows:
-    uses: ./.github/workflows/windows.yml
   miscellaneous:
     uses: ./.github/workflows/miscellaneous.yml
 
   publisher:
-    needs: [android, ios, linux, mac, windows, miscellaneous]
+    needs: [android, ios, miscellaneous]
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -44,47 +38,6 @@ jobs:
           name: iPhone-NDLL
           path: ndll/iPhone
 
-      - name: Download Linux64-NDLL artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: Linux64-NDLL
-          path: ndll/Linux64
-
-      - name: Download Linux64-Hashlink artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: Linux64-Hashlink
-          path: templates/bin/hl/Linux64
-
-      - name: Download Mac64-NDLL artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: Mac64-NDLL
-          path: ndll/Mac64
-
-      - name: Download MacArm64-NDLL artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: MacArm64-NDLL
-          path: ndll/MacArm64
-
-      - name: Download Windows64-NDLL artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: Windows64-NDLL
-          path: ndll/Windows64
-
-      - name: Download Windows-NDLL artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: Windows-NDLL
-          path: ndll/Windows
-
-      - name: Download Windows64-Hashlink artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: Windows64-Hashlink
-          path: templates/bin/hl/Windows64
 
       - name: Download Miscellaneous artifact
         uses: actions/download-artifact@v8
