@@ -137,8 +137,7 @@ namespace lime {
 		}
 
 	}
-
-
+  
 	SDLWindow::~SDLWindow () {
 
 		if (sdlWindow) {
@@ -156,7 +155,6 @@ namespace lime {
 		}
 
 	}
-
 
 	int SDLWindow::Alert (int type, const char* message, const char* title, const char** buttons, int count) {
 
@@ -398,12 +396,21 @@ namespace lime {
 
 	}
 
+	  double SDLWindow::GetScale () {
+    int w_logical, h_logical;
+    int w_pixels, h_pixels;
 
-	double SDLWindow::GetScale () {
 
-		return 1 /* SDL_GetWindowDisplayScale (sdlWindow) */;
+    SDL_GetWindowSize(sdlWindow, &w_logical, &h_logical);
 
-	}
+    SDL_GetWindowSizeInPixels(sdlWindow, &w_pixels, &h_pixels);
+
+    if (w_logical > 0) {
+        return (double)w_pixels / (double)w_logical;
+    }
+
+    return 1.0;
+    }
 
 
 	bool SDLWindow::GetTextInputEnabled () {
