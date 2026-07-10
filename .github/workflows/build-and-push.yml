@@ -10,6 +10,8 @@ jobs:
     uses: ./.github/workflows/linux.yml
   mac:
     uses: ./.github/workflows/mac.yml
+  windows:
+    uses: ./.github/workflows/windows.yml
   miscellaneous:
     uses: ./.github/workflows/miscellaneous.yml
 
