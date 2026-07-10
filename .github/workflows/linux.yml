@@ -53,6 +53,13 @@ jobs:
       - name: Rebuild Lime (Hashlink)
         run: haxelib run lime rebuild hl -nocolor
 
+      - name: Shrink large binaries
+        run: |
+          strip --strip-debug ndll/Linux64/lime-debug.ndll
+          strip --strip-debug ndll/Linux64/lime-debug.hdll
+        # This makes sure the workflow doesn't crash if these files are missing
+        continue-on-error: true
+
       - name: Upload Artifact (ndll/Linux64)
         uses: actions/upload-artifact@v7.0.0
         with:
