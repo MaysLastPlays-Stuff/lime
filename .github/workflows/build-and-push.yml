@@ -6,11 +6,15 @@ jobs:
     uses: ./.github/workflows/android.yml
   ios:
     uses: ./.github/workflows/ios.yml
+  linux:
+    uses: ./.github/workflows/linux.yml
+  mac:
+    uses: ./.github/workflows/macos.yml
   miscellaneous:
     uses: ./.github/workflows/miscellaneous.yml
 
   publisher:
-    needs: [android, ios, miscellaneous]
+    needs: [linux, mac, android, ios, miscellaneous]
     runs-on: ubuntu-latest
     permissions:
       contents: write
