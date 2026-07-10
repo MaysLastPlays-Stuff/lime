@@ -397,22 +397,7 @@ namespace lime {
 	}
 
 	  double SDLWindow::GetScale () {
-    
-    #if defined(IPHONE) || defined(APPLETV)
-    int w_logical, h_logical;
-    int w_pixels, h_pixels;
-    
-    SDL_GetWindowSize(sdlWindow, &w_logical, &h_logical);
-    SDL_GetWindowSizeInPixels(sdlWindow, &w_pixels, &h_pixels);
-    
-    if (w_logical > 0) {
-        return (double)w_pixels / (double)w_logical;
-    }
-    return 1.0;
-    
-    #else
     return 1 /* SDL_GetWindowDisplayScale (sdlWindow) */;
-    #endif
     }
 
 
